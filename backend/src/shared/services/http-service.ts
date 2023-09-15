@@ -17,7 +17,7 @@ export default class HttpService {
         const response = await this.httpClient.get(url, { params });
         return response.data;
       } catch (error) {
-        throw error
+        return error;
       }
     }
   
@@ -26,7 +26,7 @@ export default class HttpService {
         const response = await this.httpClient.post(url, body);
         return response.data;
       } catch (error) {
-        throw error
+        return error
       }
     }
   
@@ -35,7 +35,7 @@ export default class HttpService {
         const response = await this.httpClient.put(url, body);
         return response.data;
       } catch (error) {
-        throw error
+        return error
       }
     }
   
@@ -44,7 +44,7 @@ export default class HttpService {
         const response = await this.httpClient.delete(url);
         return response.data;
       } catch (error) {
-        throw error
+        return error
       }
     }
   }
