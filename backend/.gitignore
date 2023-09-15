@@ -56,3 +56,11 @@ profile-*
 profile*
 *clinic*
 *flamegraph*
+
+# generated code
+examples/typescript-server.js
+test/types/index.js
+
+# compiled app
+dist
+.env
