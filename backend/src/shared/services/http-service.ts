@@ -4,7 +4,7 @@ export default class HttpService {
     httpClient: AxiosInstance
     constructor(baseURL?: string) {
       this.httpClient = axios.create({
-        baseURL: baseURL ? baseURL : process.env.BASE_URL,
+        baseURL: baseURL ? baseURL : process.env.GITHUB_URL,
         timeout: 5000,
         headers: {
           'Content-Type': 'application/json',
