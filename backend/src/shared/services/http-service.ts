@@ -3,9 +3,6 @@ import axios, { AxiosInstance } from 'axios';
 export default class HttpService {
     httpClient: AxiosInstance
     constructor(baseURL?: string) {
-        console.log(process.env.BASE_URL)
-        console.log(baseURL)
-        console.log('XD')
       this.httpClient = axios.create({
         baseURL: baseURL ? baseURL : process.env.BASE_URL,
         timeout: 5000,

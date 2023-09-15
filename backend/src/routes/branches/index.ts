@@ -1,13 +1,19 @@
 import { FastifyPluginAsync } from "fastify"
-import HttpService from "../../services/http-service";
+import { IRepoQuerystring } from "../../shared/interfaces/Repo";
+import HttpService from "../../shared/services/http-service";
+import { branchesSchema } from "../../shared/schemas/branches";
 
-const example: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  fastify.get('/', async function (request, reply) {
-    // const { owner, repo } = request.params;
+const branches: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
+  fastify.get<{
+    Querystring: IRepoQuerystring
+  }>('/', {
+    schema: branchesSchema
+  }, async function (request, reply) {
+    const { owner, repo } = request.query;
     const httpService = new HttpService();
-    const res = await httpService.get('repos/ptthappy/take-home/branches')
+    const res = await httpService.get(`repos/${owner}/${repo}/branches`)
     reply.send(res)
   })
 }
 
-export default example;
+export default branches;
