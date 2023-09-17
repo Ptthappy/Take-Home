@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-commits-group',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./commits-group.component.css']
 })
 export class CommitsGroupComponent {
-
+  @Input('commits') commits: Array<any> = [];
 }
