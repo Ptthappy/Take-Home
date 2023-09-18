@@ -36,13 +36,14 @@ export class HistoryComponent {
         })
       } else {
         // handle not found branch error
-        // this.isLoading = false;
+        this.isLoading = false;
       }
     })
   }
 
   onBranchChange(evt: any) {
     this.router.navigate([`commits/${evt.name}`])
+    this.commits = [];
     this.pullChanges();
   }
 }

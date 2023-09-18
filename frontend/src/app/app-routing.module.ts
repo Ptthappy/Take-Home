@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from './views/history/history.component';
-import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
   {path: 'commits', component: HistoryComponent},
-  {path: 'commits/:branch', component: HistoryComponent}
+  {path: 'commits/:branch', component: HistoryComponent},
+  {path: '**', redirectTo: 'commits'}
 ];
 
 @NgModule({
