@@ -3,11 +3,13 @@ import axios, { AxiosInstance } from 'axios';
 export default class HttpService {
     httpClient: AxiosInstance
     constructor(baseURL?: string) {
+      const token = process.env.GITHUB_PASSWORD ? `${process.env.GITHUB_USER}:${btoa(process.env.GITHUB_PASSWORD)}` : ''
       this.httpClient = axios.create({
         baseURL: baseURL ? baseURL : process.env.GITHUB_URL,
         timeout: 5000,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Basic ${token}`
         },
       });
     }
