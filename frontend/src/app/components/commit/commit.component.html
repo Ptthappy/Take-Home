@@ -1,1 +1,19 @@
-<p>commit works!</p>
+<div class="flex">
+    <div class="flex flex-1 flex-col">
+        <div>{{commit.commit.message}}</div>
+        <div class="flex">
+            <img *ngIf="commit?.author?.avatar_url" [src]="commit?.author?.avatar_url" alt="avatar" class="max-h-6 mr-2 mt-1 mb-2 rounded-full">
+            {{commit?.author?.login || commit?.commit?.author?.name}}
+            {{formattedDate}}
+        </div>
+    </div>
+    <div>
+        <!-- buttons data -->
+        <button (click)="handleCopy()">copy</button>
+        <button (click)="handleViewChanges()">{{getShortSha()}}</button>
+        <button (click)="handleGoToTree()">gototree</button>
+        <!-- {{commit?.sha}}
+        {{commit?.commit?.url}}
+        {{commit?.commit?.tree?.url}} -->
+    </div>
+</div>

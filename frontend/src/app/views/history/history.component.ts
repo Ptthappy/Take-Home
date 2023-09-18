@@ -32,9 +32,6 @@ export class HistoryComponent {
         this.http.get(`history?owner=${environment.githubUser}&repo=${environment.githubRepo}&branch=${this.branch.commit.sha}`).subscribe((res2) => {
           this.commits = res2;
           this.isLoading = false;
-          console.log('done')
-          console.log(this.branch)
-          console.log(this.branches)
         })
       } else {
         // handle not found branch error

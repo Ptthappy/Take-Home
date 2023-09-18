@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-commit',
@@ -6,5 +8,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./commit.component.css']
 })
 export class CommitComponent {
+  constructor(private datePipe: DatePipe, private clipboard: ClipboardService) {}
 
+  @Input('commit') commit: any = {};
+  formattedDate: string | null = '';
+
+  ngOnInit(): void {
+    this.setDate()
+  }
+
+  ngOnChanges(): void {
+    this.setDate()
+  }
+
+  setDate() {
+    const date = new Date(this.commit?.commit?.author.date);
+    this.formattedDate = this.datePipe.transform(date, 'dd/MM/yyyy, h:mma');
+  }
+
+  handleCopy() {
+    this.clipboard.copy(this.commit?.sha)
+    console.log('copied');
+  }
+
+  handleGoToTree() {
+    window.open(this.commit?.html_url.replace('commit', 'tree'), '_blank')
+    console.log('gototree');
+    
+  }
+
+  handleViewChanges() {
+    window.open(this.commit?.html_url, '_blank')
+    console.log('changes');
+  }
+
+  getShortSha() {
+    return this.commit.sha.slice(-6)
+  }
 }
