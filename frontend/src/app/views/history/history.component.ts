@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent {
-  constructor(private router: Router, private http: HttpService) { }
+  constructor(private router: Router, private http: HttpService, private route: ActivatedRoute) { }
 
   isLoading: boolean = true;
   branch: any = {};
@@ -19,10 +18,12 @@ export class HistoryComponent {
   currentRoute: Array<any> = [];
 
   ngOnInit() {
-    this.handleInit()
+    this.route.params.subscribe(params => {
+      this.pullChanges()
+    })
   }
 
-  handleInit() {
+  pullChanges() {    
     this.currentRoute = this.router.url.split('commits')
     this.http.get(`branches?owner=${environment.githubUser}&repo=${environment.githubRepo}`).subscribe((res: Array<any>) => {
       this.branches = res;
@@ -41,8 +42,7 @@ export class HistoryComponent {
   }
 
   onBranchChange(evt: any) {
-    console.log(evt)
-    console.log(this.branch)
-    console.log(this.branches)
+    this.router.navigate([`commits/${evt.name}`])
+    this.pullChanges();
   }
 }
