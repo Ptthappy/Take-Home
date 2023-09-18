@@ -1,13 +1,13 @@
 <div class="flex my-2 px-3">
     <div class="flex flex-1 flex-col">
-        <div class="text-bold">{{commit.commit.message}}</div>
+        <div (click)="handleViewChanges()" class="font-bold cursor-pointer">{{commit.commit.message}}</div>
         <div class="flex items-center h-6 my-1">
             <img *ngIf="commit?.author?.avatar_url" [src]="commit?.author?.avatar_url" alt="avatar" class="mr-2 h-full rounded-full">
             {{commit?.author?.login || commit?.commit?.author?.name}}
             {{formattedDate}}
         </div>
     </div>
-    <div class="flex">
+    <div class="hidden md:flex">
         <button (click)="handleCopy()" class="h-7 p-1 border border-gray-400 rounded-l-md">
             <img src="assets/icons/copy.svg" alt="copy svg" class="h-full">
         </button>
