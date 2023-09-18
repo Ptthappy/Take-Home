@@ -1,5 +1,5 @@
 <app-heading [title]="'Commits'" [heading]="'h2'"></app-heading>
-<select *ngIf="!isLoading" [(ngModel)]="branch" (ngModelChange)="onBranchChange($event)" class="mb-2">
+<select *ngIf="!isLoading" [(ngModel)]="branch" (ngModelChange)="onBranchChange($event)" class="mb-2 py-1 px-2 border border-gray-400 rounded-md">
     <option *ngFor="let b of branches" [ngValue]="b">{{b.name}}</option>
 </select>
 <app-commits-group [commits]="commits"></app-commits-group>
