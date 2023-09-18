@@ -1,19 +1,22 @@
-<div class="flex">
+<div class="flex my-2 px-3">
     <div class="flex flex-1 flex-col">
-        <div>{{commit.commit.message}}</div>
-        <div class="flex">
-            <img *ngIf="commit?.author?.avatar_url" [src]="commit?.author?.avatar_url" alt="avatar" class="max-h-6 mr-2 mt-1 mb-2 rounded-full">
+        <div class="text-bold">{{commit.commit.message}}</div>
+        <div class="flex items-center h-6 my-1">
+            <img *ngIf="commit?.author?.avatar_url" [src]="commit?.author?.avatar_url" alt="avatar" class="mr-2 h-full rounded-full">
             {{commit?.author?.login || commit?.commit?.author?.name}}
             {{formattedDate}}
         </div>
     </div>
-    <div>
-        <!-- buttons data -->
-        <button (click)="handleCopy()">copy</button>
-        <button (click)="handleViewChanges()">{{getShortSha()}}</button>
-        <button (click)="handleGoToTree()">gototree</button>
-        <!-- {{commit?.sha}}
-        {{commit?.commit?.url}}
-        {{commit?.commit?.tree?.url}} -->
+    <div class="flex">
+        <button (click)="handleCopy()" class="h-7 p-1 border border-gray-400 rounded-l-md">
+            <img src="assets/icons/copy.svg" alt="copy svg" class="h-full">
+        </button>
+        <button (click)="handleViewChanges()"
+            class="h-7 p-1 border border-y-gray-400 border-r-gray-400 rounded-r-md w-20 flex items-center justify-center">
+            <span>{{getShortSha()}}</span>
+        </button>
+        <button (click)="handleGoToTree()" class="h-7 p-1 ml-1 border border-gray-400 rounded-md">
+            <img src="assets/icons/developer.svg" alt="developer svg" class="h-full">
+        </button>
     </div>
 </div>

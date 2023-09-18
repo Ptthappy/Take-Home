@@ -1,1 +1,13 @@
-<app-commit *ngFor="let commit of commits" [commit]="commit"></app-commit>
+<div *ngFor="let commit of commits; let isLast = last; let isFirst = first">
+    <div *ngIf="!isLast && !isFirst" class="border border-x-gray-400 border-t-gray-400">
+        <app-commit [commit]="commit"></app-commit>
+    </div>
+
+    <div *ngIf="isFirst" class="border border-x-gray-400 border-t-gray-400 rounded-t-md">
+        <app-commit [commit]="commit"></app-commit>
+    </div>
+
+    <div *ngIf="isLast" class="border border-x-gray-400 border-t-gray-400 border-b-gray-400 rounded-b-md">
+        <app-commit [commit]="commit"></app-commit>
+    </div>
+</div>
