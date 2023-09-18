@@ -28,18 +28,15 @@ export class CommitComponent {
 
   handleCopy() {
     this.clipboard.copy(this.commit?.sha)
-    console.log('copied');
   }
 
   handleGoToTree() {
     window.open(this.commit?.html_url.replace('commit', 'tree'), '_blank')
-    console.log('gototree');
     
   }
 
   handleViewChanges() {
     window.open(this.commit?.html_url, '_blank')
-    console.log('changes');
   }
 
   getShortSha() {
